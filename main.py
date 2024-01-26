@@ -3,10 +3,10 @@ from graph import Node, Graph
 from random import randint, random
 
 
-WIDTH = 1000
+WIDTH = 1900
 HEIGHT = 1000
-NUM_X = 50
-NUM_Y = 50
+NUM_X = 190
+NUM_Y = 100
 
 
 def generate_grid(width: int, height: int, num_x: int, num_y: int) -> list[[Node, ...], ...]:
@@ -23,7 +23,7 @@ def generate_grid(width: int, height: int, num_x: int, num_y: int) -> list[[Node
     grid = []
     rect_width = width/num_x
     rect_height = height/num_y
-    obstacle_chance = 0.4
+    obstacle_chance = 0.55
 
     for row in range(num_x):
         columns = []
@@ -60,7 +60,7 @@ def get_node_at_point(grid: list[[Node, ...], ...], point: tuple[float, float]) 
 
 def setup_problem(width, height, num_x, num_y):
     start_loc = (randint(1, WIDTH // 2), randint(1, HEIGHT // 2))
-    goal_loc = (randint(WIDTH // 2, WIDTH), randint(HEIGHT // 2, HEIGHT))
+    goal_loc = (randint(WIDTH // 2, WIDTH-1), randint(HEIGHT // 2, HEIGHT-1))
     nodes = generate_grid(WIDTH, HEIGHT, NUM_X, NUM_Y)
     start_node = get_node_at_point(nodes, start_loc)
     goal_node = get_node_at_point(nodes, goal_loc)
@@ -96,7 +96,7 @@ def main():
         graph.draw_graph(screen)
 
         pygame.display.update()
-        clock.tick(10)
+        clock.tick(100)
 
     pygame.quit()
 
